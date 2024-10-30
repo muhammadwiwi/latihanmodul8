@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data Mahasiswa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to right, #f0f8ff, #e6e6fa);
+            color: #333;
+        }
+        h2 {
+            text-align: center;
+            color: #6c45a0;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #6c45a0;
+            box-shadow: 0 0 5px rgba(108, 69, 160, 0.5);
+        }
+        .error {
+            color: rgb(183, 19, 19);
+            font-size: 0.9em;
+            display: none;
+            margin-top: 5px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .submit-button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        .submit-button:hover {
+            background-color: #6c45a0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<h2>Form Data Mahasiswa</h2>
+<form id="mahasiswaForm">
+    <label for="nama">Nama Mahasiswa:</label>
+    <input type="text" id="nama" name="nama">
+    <span class="error" id="namaError">Tolong diisi ya, manis 😘</span>
+
+    <label for="nim">NIM:</label>
+    <input type="text" id="nim" name="nim">
+    <span class="error" id="nimError">Tolong diisi ya, manis 😘</span>
+
+    <label for="jurusan">Jurusan:</label>
+    <input type="text" id="jurusan" name="jurusan">
+    <span class="error" id="jurusanError">Tolong diisi ya, manis 😘</span>
+
+    <label for="angkatan">Angkatan:</label>
+    <input type="number" id="angkatan" name="angkatan">
+    <span class="error" id="angkatanError">Tolong diisi ya, manis 😘</span>
+
+    <button type="submit" class="submit-button">Submit</button>
+</form>
+
+<script>
+    const form = document.getElementById('mahasiswaForm');
+    const fields = ['nama', 'nim', 'jurusan', 'angkatan'];
+
+    form.addEventListener('submit', function(event) {
+        let isValid = true;
+
+        fields.forEach(function(field) {
+            const input = document.getElementById(field);
+            const errorElement = document.getElementById(field + 'Error');
+
+            if (input.value.trim() === '') {
+                errorElement.style.display = 'block';
+                isValid = false;
+            } else {
+                errorElement.style.display = 'none';
+            }
+        });
+
+        if (!isValid) {
+            event.preventDefault(); 
+        }
+    });
+
+    fields.forEach(function(field) {
+        const input = document.getElementById(field);
+        input.addEventListener('input', function() {
+            const errorElement = document.getElementById(field + 'Error');
+            if (input.value.trim() !== '') {
+                errorElement.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
